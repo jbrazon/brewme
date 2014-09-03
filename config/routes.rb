@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  
-  
   devise_for :users
-  root to: "categories#index"
+  
+  root to: "browse#index"
+
+  get "c/:id" , to: "browse#category" ,  as: :cat
+  get "i/:id" , to: "browse#item" ,  as: :it  
 
   resources :items
 

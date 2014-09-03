@@ -1,0 +1,10 @@
+<h1><%= @category.name %></h1>
+<% @category.categories.each do |category| %>
+      <ul>
+        <li><%= link_to category.name , cat_path(category.id) %></li>
+      </ul>
+    <% end %>
+<% @category.items.each do |item| %>    
+	<li><%= link_to item.name , it_path(item.id) %></li>
+	<% end %>
+
