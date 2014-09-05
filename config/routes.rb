@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   root to: "browse#index"
 
   get "c/:id" , to: "browse#category" ,  as: :cat
-  get "i/:id" , to: "browse#item" ,  as: :it  
+  get "i/:id" , to: "browse#item" ,  as: :it 
 
   resources :items
 
   resources :categories
 
+  resources :charges 
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
