@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cart.user_id %>
+  <% @cart.cart_items.each do |cart_item| %>
+  <%= cart_item.item.name %>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+
+
+<!-- calculate prices of cart item (instance method)
+increment or decrease items on cart
+tax/fee cart adding or taking
+total prices cart
+
+ -->

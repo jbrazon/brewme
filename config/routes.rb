@@ -5,12 +5,21 @@ Rails.application.routes.draw do
 
   get "c/:id" , to: "browse#category" ,  as: :cat
   get "i/:id" , to: "browse#item" ,  as: :it 
+  get "add/:id" , to: "shop#add_item" ,  as: :add
+  get "view" , to: "shop#view" ,  as: :view
 
   resources :items
 
   resources :categories
 
   resources :charges 
+
+  resources :cart_items
+
+  resources :fees
+
+  resources :carts
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

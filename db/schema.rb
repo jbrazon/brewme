@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903214845) do
+ActiveRecord::Schema.define(version: 20140910200531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cart_items", force: true do |t|
+    t.integer  "cart_id"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+  add_index "cart_items", ["item_id"], name: "index_cart_items_on_product_id", using: :btree
+
+  create_table "carts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -25,13 +45,26 @@ ActiveRecord::Schema.define(version: 20140903214845) do
 
   add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
 
+  create_table "fees", force: true do |t|
+    t.integer  "cart_id"
+    t.string   "title"
+    t.datetime "start_at"
+    t.datetime "end"
+    t.float    "fee"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fees", ["cart_id"], name: "index_fees_on_cart_id", using: :btree
+
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "quantity"
+    t.string   "quantity"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "price"
   end
 
   add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
